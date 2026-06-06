@@ -50,15 +50,6 @@ __global__ void matrix_add(
     c[flat_idx] = a[flat_idx] + b[flat_idx];
 }
 
-// For 777 * 333 data elements, the total number of elements are 258,741.
-// For a 16 * 16 block size, i.e, 256 threads per block which we are opting for, The total number of
-// blocks with 256 threads to be generated would be 258741 / 256 which would equal to 1010 as the
-// result would be floor divided But what i just did is for a vector like 1D laid data.
-// for 2D data, we ceil divide and find both x and y grid dimensions. So we end up with 1029 blocks
-// of threads each block with 256 threads. that is, 1029 * 256 - 4683 extra threads which would ofc
-// out of bounds which we will ignore (they will hit the bounds check). Thats 18 extra blocks. if this were 1D, we would need 1011
-// blocks (both with excess threads).
-
 int main(int argc, char* argv[]) {
     constexpr int ROWS = 777;
     constexpr int COLS = 333;
