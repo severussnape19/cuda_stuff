@@ -62,7 +62,7 @@ __global__ void matrix_transpose(
     b[col * src_rows + row] = val; // Column major
 }
 
-int vec_scale() {
+int mat_scale() {
     constexpr size_t ROWS = 500;
     constexpr size_t COLS = 700;
     constexpr size_t N = ROWS * COLS;
